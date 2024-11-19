@@ -10,7 +10,7 @@ function FlappyBird() {
 
    const gameAreaHeight = 500;
    const birdSize = 20;
-   const pipeWidth = 50;
+   const pipeWidth = 80;
    const pipeGap = 150;
    const gravity = 3;
    const jumpHeight = -10;
@@ -48,7 +48,7 @@ function FlappyBird() {
             birdVelocity.current += gravity * 0.2; // Simule la gravité
             return Math.min(newPosition, gameAreaHeight - birdSize); // Empêche de dépasser le bas
          });
-      }, 30);
+      }, 25);
 
       return () => clearInterval(gameLoop);
    }, [isGameRunning]);
@@ -61,7 +61,7 @@ function FlappyBird() {
          setPipePosition((prev) => {
             if (prev <= -pipeWidth) {
                setScore((prevScore) => prevScore + 1);
-               setPipeHeight(Math.floor(Math.random() * 200) + 50); // Nouveaux tuyaux
+               setPipeHeight(Math.floor(Math.random() * 200)); // Nouveaux tuyaux
                return 400; // Réinitialise la position des tuyaux
             } else {
                return prev - 5; // Avance les tuyaux
@@ -108,7 +108,8 @@ function FlappyBird() {
                position: "relative",
                width: "400px",
                height: `${gameAreaHeight}px`,
-               backgroundColor: "#70c5ce",
+               background: `url("../img/fond.jpg") no-repeat center center`,
+
                overflow: "hidden",
                margin: "0 auto",
                border: "2px solid #333"
